@@ -1,0 +1,52 @@
+$breakpoints: (
+        "xs": 500px,
+        "sm": 768px,
+        "md": 900px,
+        "lg": 1024px,
+        "xl": 1440px,
+);
+
+/* from... */
+@mixin media-min($_key) {
+  @media screen and (min-width: map-get($breakpoints, $_key)) {
+    &{ @content; }
+  }
+}
+
+/* to... */
+@mixin media-max($_key) {
+  @media screen and (max-width: map-get($breakpoints, $_key) - 1) {
+    &{ @content; }
+  }
+}
+
+/* from... to... */
+@mixin media-between($_keymin, $_keymax) {
+  @media screen and (min-width: map-get($breakpoints, $_keymin)) and (max-width: map-get($breakpoints, $_keymax) - 1) {
+    &{ @content; }
+  }
+}
+
+/* at... */
+@mixin media($_key) {
+  @media screen and (min-width: map-get($breakpoints, $_key)) and (max-width: map-get($breakpoints, nth(map-keys($breakpoints), index(map-keys($breakpoints), $_key) + 1)) - 1) {
+    &{ @content; }
+  }
+}
+
+
+/*
+ *How to use
+ */
+//@include media-min("desktop-up") {
+//  /* from 1024px to infinite */
+//}
+//@include media-max("tablet-down") {
+//  /* from 0px to 899px */
+//}
+//@include media-between("tablet-up", "desktop-down") {
+//  /* from 768px to 1279px */
+//}
+//@include media("tablet-down") {
+//  /* from 900px to 1023px */
+//}

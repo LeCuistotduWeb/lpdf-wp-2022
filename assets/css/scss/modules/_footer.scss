@@ -1,0 +1,34 @@
+.footer {
+  background: #EFEAE7;
+
+  .footer__container {
+    padding: 32px $spacing 0;
+
+    @include media-min("md") {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  .footer__container ul {
+    margin: 0 0 $spacing;
+    padding: 0;
+    list-style-type: none;
+    @include media-min("md") {
+      margin-bottom: 0;
+    }
+  }
+
+  .footer__container ul a {
+    color: $color-typography-default;
+    text-decoration: none;
+  }
+
+  .footer__container ul li {
+    padding: 10px 0;
+  }
+
+  .footer-bottom {
+    padding-bottom: 16px;
+  }
+}

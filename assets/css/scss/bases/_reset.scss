@@ -1,0 +1,30 @@
+body {
+  font-family: $font-sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.75em;
+  color: $color-typography-default;
+}
+
+:root {
+  --gutter-x: 1rem;
+}
+
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+a {
+  color: $color-vieux-rose;
+  //text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

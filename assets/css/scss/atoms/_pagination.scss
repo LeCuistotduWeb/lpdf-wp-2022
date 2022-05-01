@@ -1,0 +1,32 @@
+.pagination-block {
+  & .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+  }
+
+  & .pagination-item {
+    margin: 12px;
+  }
+
+  & .btn a, & .btn button {
+    background: none;
+    border: none;
+  }
+
+  & .page-number {
+    text-decoration: none;
+    padding: 6px 12px;
+    color: black;
+    transition: all .3s;
+    border-radius: 5px;
+    &.current {
+      background-color: $color-creme;
+    }
+    &:hover {
+      background-color: $color-creme;
+    }
+  }
+}

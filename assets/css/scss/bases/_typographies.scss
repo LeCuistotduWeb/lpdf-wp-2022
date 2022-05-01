@@ -1,0 +1,35 @@
+h1, h2, h3  {
+  font-family: $font-serif;
+
+  span,em {
+    font-family: $font-sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-weight: bold;
+  }
+}
+
+h1 {
+  font-weight: 600;
+  text-align: left;
+  font-size: 28px;
+  line-height: 40px;
+
+  @include media-min("sm") {
+    font-size: 50px;
+    line-height: 75px;
+    font-weight: normal;
+  }
+}
+
+h2 {
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: left;
+
+  @include media-min("sm") {
+    font-size: 28px;
+    line-height: 36px;
+  }
+}
