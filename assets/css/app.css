@@ -145,6 +145,21 @@ h2 {
       padding: 2rem; } }
 
 /* CSS sp├®cifique, r├®utilisant les placeholders */
+.link-category {
+  color: #414141;
+  text-decoration: none; }
+  .link-category span {
+    font-weight: bold; }
+  @media screen and (min-width: 900px) {
+    .link-category {
+      font-size: 18px; }
+      .link-category:hover .link-category__icon {
+        transform: translateX(3px); } }
+
+.link-category__icon {
+  margin-left: 5px;
+  transition: all .3s; }
+
 /*--------------------------------------------------------------
 # Module
 --------------------------------------------------------------*/
@@ -299,7 +314,7 @@ h2 {
   margin: 0;
   font-weight: normal;
   font-size: 20px;
-  line-height: 24px;
+  line-height: 28px;
   color: #414141; }
 
 .post-like__wrapper {
@@ -433,6 +448,10 @@ h2 {
   overflow: auto;
   grid-gap: 1rem;
   padding: 16px; }
+
+.section-category__link {
+  text-align: right;
+  margin-top: 16px; }
 
 /*--------------------------------------------------------------
 # Pages

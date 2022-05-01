@@ -50,6 +50,10 @@
   }
 }
 
+.homepage__section-category {
+
+}
+
 .homepage__section-title {
   margin: 0;
   transform: translateY(-50%);
@@ -61,4 +65,9 @@
   overflow: auto;
   grid-gap: 1rem;
   padding: 16px;
+}
+
+.section-category__link {
+  text-align: right;
+  margin-top: $spacing;
 }

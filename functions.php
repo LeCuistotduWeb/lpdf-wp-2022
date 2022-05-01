@@ -1,12 +1,12 @@
 <?php
-function montheme_register_assets()
+function monthemeRegisterAssets()
 {
   wp_enqueue_style( 'lpdf-styles', get_template_directory_uri() . '/assets/css/app.css', [], 1);
   wp_enqueue_script('lpdf-scripts', get_template_directory_uri(). '/assets/js/app.js', [], null, true);
 }
-add_action('wp_enqueue_scripts', 'montheme_register_assets');
+add_action('wp_enqueue_scripts', 'monthemeRegisterAssets');
 
-function montheme_supports()
+function monthemeSupports()
 {
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
@@ -15,19 +15,19 @@ function montheme_supports()
     register_nav_menu('footer', 'Pied de page');
     add_image_size('post-thumbnail', 350, 215, true);
 }
-add_action('after_setup_theme', 'montheme_supports');
+add_action('after_setup_theme', 'monthemeSupports');
 
-function remove_default_jquery( &$scripts){
+function removeDefaultJquery( &$scripts){
   if(!is_admin()){
     $scripts->remove( 'jquery');
   }
 }
-add_filter( 'wp_default_scripts', 'remove_default_jquery' );
+add_filter( 'wp_default_scripts', 'removeDefaultJquery' );
 
 /**
  * Unload WooCommerce assets on non WooCommerce pages.
  */
-function remove_wc_assets()
+function removeWcAssets()
 {
 
   // if WooCommerce is not active, abort.
@@ -44,7 +44,7 @@ function remove_wc_assets()
   remove_action('wp_print_scripts', [WC_Frontend_Scripts::class, 'localize_printed_scripts'], 5);
   remove_action('wp_print_footer_scripts', [WC_Frontend_Scripts::class, 'localize_printed_scripts'], 5);
 }
-add_action( 'get_header', 'remove_wc_assets' );
+add_action( 'get_header', 'removeWcAssets' );
 
 require_once('classes/custom-post-likes.class.php');
 
@@ -94,3 +94,30 @@ function widgetsInit()
   ));
 }
 add_action('widgets_init', 'widgetsInit');
+
+function shortcodeCategorySection( $atts )
+{
+  if(!isset($atts['category_name']) && empty($atts['category_name'])) { return null; }
+
+  $category = get_category_by_slug($atts['category_name']);
+  if ( $category instanceof WP_Term ) {
+    $categoryName = $category->name;
+    $categorySlug = $category->name;
+  } else { return null; }
+
+  ob_start(); // On démarre la rétention
+  get_template_part( 'parts/category-section', '', [
+    'data' => [
+      'category' => $category,
+      'categoryName' => $categoryName,
+      'categorySlug' => $categorySlug,
+      'type' => $atts['type'] ?? 'default',
+      'bgColor' => $atts['bg_color'] ?? '#FFDCD9',
+    ],
+  ]);
+  $html = ob_get_contents();
+  ob_end_clean();
+
+  return $html;
+}
+add_shortcode( 'category-section', 'shortcodeCategorySection' );
