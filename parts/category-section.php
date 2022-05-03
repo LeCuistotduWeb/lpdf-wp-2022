@@ -8,7 +8,7 @@ $type = $args['data']['type'];
 
 <section class="homepage__section-category homepage__section-category-<?= $type ?>" style="background-color: <?= $bgColor ?>">
   <div class="container">
-    <h2 class="homepage__section-title">Catégorie <em><?= $categoryName ?></em></h2>
+    <h2 class="homepage__section-title homepage__section-category-title">Catégorie <em><?= $categoryName ?></em></h2>
   </div>
   <div class="homepage__posts-list container">
     <?php
@@ -18,10 +18,21 @@ $type = $args['data']['type'];
       <article class="post-card">
         <a class="post-card__link" href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>">
           <div class="post-card__thumbnail">
-            <img width="200" src="<?php the_post_thumbnail_url()?>" alt="<?php the_title(); ?>">
+            <img width="200" src="<?php the_post_thumbnail_url() ?>" alt="<?php the_title(); ?>">
+            <div class="post-card__info">
+              <div class="post-card__info-likes">
+                <?= getPostLikes(get_the_ID()) ?>
+              </div>
+              <div class="post-card__info-comments">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15.732 13.765">
+                  <path id="Icon_awesome-comment" data-name="Icon awesome-comment" d="M7.866,2.25C3.521,2.25,0,5.111,0,8.641a5.672,5.672,0,0,0,1.751,4.016A7.817,7.817,0,0,1,.068,15.6a.244.244,0,0,0-.046.267.241.241,0,0,0,.224.147,7.027,7.027,0,0,0,4.32-1.579,9.371,9.371,0,0,0,3.3.6c4.345,0,7.866-2.861,7.866-6.391S12.21,2.25,7.866,2.25Z" transform="translate(0 -2.25)" fill="#232323"/>
+                </svg>
+                <span><?= get_comments_number() ?></span>
+              </div>
+            </div>
           </div>
           <div class="post-card__content">
-            <h2 class="post-card__title"><?php the_title(); ?></h2>
+            <h3 class="post-card__title"><?php the_title(); ?></h3>
           </div>
         </a>
       </article>

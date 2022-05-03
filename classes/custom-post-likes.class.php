@@ -2,7 +2,6 @@
 
 global $post;
 
-add_action( 'wp_enqueue_scripts', 'sl_enqueue_scripts' );
 function sl_enqueue_scripts() {
     wp_enqueue_script( 'simple-likes-public-js', get_template_directory_uri() . '../assets/js/likes-public.js', array( 'jquery' ), '0.5', false );
     wp_localize_script( 'simple-likes-public-js', 'simpleLikes', array(
@@ -11,12 +10,12 @@ function sl_enqueue_scripts() {
         'unlike' => __( 'Unlike', 'sharlene' )
     ) );
 }
+add_action( 'wp_enqueue_scripts', 'sl_enqueue_scripts' );
+
 /**
  * Processes like/unlike
  * @since    0.5
  */
-add_action( 'wp_ajax_nopriv_process_simple_like', 'process_simple_like' );
-add_action( 'wp_ajax_process_simple_like', 'process_simple_like' );
 function process_simple_like() {
     // Security
     $nonce = isset( $_REQUEST['nonce'] ) ? sanitize_text_field( $_REQUEST['nonce'] ) : 0;
@@ -39,7 +38,7 @@ function process_simple_like() {
         if ( !already_liked( $post_id, $is_comment ) ) { // Like the post
             if ( is_user_logged_in() ) { // user is logged in
                 $user_id = get_current_user_id();
-                $post_users = post_user_likes( $user_id, $post_id, $is_comment );
+                $post_users = postUserLikes( $user_id, $post_id, $is_comment );
                 if ( $is_comment == 1 ) {
                     // Update User & Comment
                     $user_like_count = get_user_option( "_comment_like_count", $user_id );
@@ -75,7 +74,7 @@ function process_simple_like() {
         } else { // Unlike the post
             if ( is_user_logged_in() ) { // user is logged in
                 $user_id = get_current_user_id();
-                $post_users = post_user_likes( $user_id, $post_id, $is_comment );
+                $post_users = postUserLikes( $user_id, $post_id, $is_comment );
                 // Update User
                 if ( $is_comment == 1 ) {
                     $user_like_count = get_user_option( "_comment_like_count", $user_id );
@@ -140,6 +139,9 @@ function process_simple_like() {
         }
     }
 }
+add_action( 'wp_ajax_nopriv_process_simple_like', 'process_simple_like' );
+add_action( 'wp_ajax_process_simple_like', 'process_simple_like' );
+
 /**
  * Utility to test if the post is already liked
  * @since    0.5
@@ -165,7 +167,7 @@ function already_liked( $post_id, $is_comment ) {
     } else {
         return false;
     }
-} // already_liked()
+}
 
 /**
  * Output the like button
@@ -173,9 +175,10 @@ function already_liked( $post_id, $is_comment ) {
  * @param null $is_comment
  * @param false $hideCounter
  * @param false $hideLoader
+ * @param false $noLink
  * @return string
  */
-function get_simple_likes_button( $post_id, bool $is_comment = NULL, bool $hideCounter = false, bool $hideLoader = false, bool $hideTitle = false, string $classnames= "") {
+function get_simple_likes_button( $post_id, bool $is_comment = NULL, bool $hideCounter = false, bool $hideLoader = false, bool $hideTitle = false, string $classnames= "", bool $noLink=false) {
     $is_comment = ( NULL == $is_comment ) ? 0 : 1;
     $output = '';
     $nonce = wp_create_nonce( 'simple-likes-nonce' ); // Security
@@ -205,23 +208,25 @@ function get_simple_likes_button( $post_id, bool $is_comment = NULL, bool $hideC
         $title = !$hideTitle ? __( 'Like This', 'sharlene' ) : null;
         $icon = $icon_empty;
     }
-    $output = '<span class="post-like__wrapper"><a href="' . admin_url( 'admin-ajax.php?action=process_simple_like' . '&nonce=' . $nonce . '&post_id=' . $post_id . '&disabled=true&is_comment=' . $is_comment ) . '" class="'.$classnames .' post-like__button' . $post_id_class . $class . $comment_class . '" data-nonce="' . $nonce . '" data-post-id="' . $post_id . '" data-iscomment="' . $is_comment . '" title="' . $title . '">' . $icon . $count . $title . '</a>' . $loader . '</span>';
-    return $output;
-} // get_simple_likes_button()
-/**
- * Processes shortcode to manually add the button to posts
- * @since    0.5
- */
-add_shortcode( 'jmliker', 'sl_shortcode' );
-function sl_shortcode() {
-    return get_simple_likes_button( get_the_ID(), 0 );
-} // shortcode()
+    if($noLink){
+      return '<span class="post-like__wrapper">'. $icon . $count . $title .'</span>';
+    }
+    return '<span class="post-like__wrapper"><a href="' . admin_url( 'admin-ajax.php?action=process_simple_like' . '&nonce=' . $nonce . '&post_id=' . $post_id . '&disabled=true&is_comment=' . $is_comment ) . '" class="'.$classnames .' post-like__button' . $post_id_class . $class . $comment_class . '" data-nonce="' . $nonce . '" data-post-id="' . $post_id . '" data-iscomment="' . $is_comment . '" title="' . $title . '">' . $icon . $count . $title . '</a>' . $loader . '</span>';
+}
+
+function getPostLikes($post_id) {
+  $like_count = get_post_meta( $post_id, "_post_like_count", true );
+  $like_count = ( isset( $like_count ) && is_numeric( $like_count ) ) ? $like_count : 0;
+  $icon = get_liked_icon();
+  return '<span class="post-like__wrapper">'. $icon . $like_count .'</span>';
+}
+
 /**
  * Utility retrieves post meta user likes (user id array),
  * then adds new user id to retrieved array
  * @since    0.5
  */
-function post_user_likes( $user_id, $post_id, $is_comment ) {
+function postUserLikes( $user_id, $post_id, $is_comment ) {
     $post_users = '';
     $post_meta_users = ( $is_comment == 1 ) ? get_comment_meta( $post_id, "_user_comment_liked" ) : get_post_meta( $post_id, "_user_liked" );
     if ( count( $post_meta_users ) != 0 ) {
@@ -234,7 +239,8 @@ function post_user_likes( $user_id, $post_id, $is_comment ) {
         $post_users['user-' . $user_id] = $user_id;
     }
     return $post_users;
-} // post_user_likes()
+}
+
 /**
  * Utility retrieves post meta ip likes (ip array),
  * then adds new ip to retrieved array
@@ -254,7 +260,8 @@ function post_ip_likes( $user_ip, $post_id, $is_comment ) {
         $post_users['ip-' . $user_ip] = $user_ip;
     }
     return $post_users;
-} // post_ip_likes()
+}
+
 /**
  * Utility to retrieve IP address
  * @since    0.5
@@ -270,7 +277,8 @@ function sl_get_ip() {
     $ip = filter_var( $ip, FILTER_VALIDATE_IP );
     $ip = ( $ip === false ) ? '0.0.0.0' : $ip;
     return $ip;
-} // sl_get_ip()
+}
+
 /**
  * Utility returns the button icon for "like" action
  * @since    0.5
@@ -278,7 +286,8 @@ function sl_get_ip() {
 function get_liked_icon() {
     /* If already using Font Awesome with your theme, replace svg with: <i class="fa fa-heart"></i> */
     return '<span class="post-like__icon"><svg height="15" width="15" role="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" viewBox="0 0 128 128" enable-background="new 0 0 128 128" xml:space="preserve"><path id="heart-full" d="M124 20.4C111.5-7 73.7-4.8 64 19 54.3-4.9 16.5-7 4 20.4c-14.7 32.3 19.4 63 60 107.1C104.6 83.4 138.7 52.7 124 20.4z"/></svg></span>';
-} // get_liked_icon()
+}
+
 /**
  * Utility returns the button icon for "unlike" action
  * @since    0.5
@@ -286,7 +295,8 @@ function get_liked_icon() {
 function get_unliked_icon() {
     /* If already using Font Awesome with your theme, replace svg with: <i class="fa fa-heart-o"></i> */
     return '<span class="post-like__icon"><svg height="15" width="15" role="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" viewBox="0 0 128 128" enable-background="new 0 0 128 128" xml:space="preserve"><path id="heart" d="M64 127.5C17.1 79.9 3.9 62.3 1 44.4c-3.5-22 12.2-43.9 36.7-43.9 10.5 0 20 4.2 26.4 11.2 6.3-7 15.9-11.2 26.4-11.2 24.3 0 40.2 21.8 36.7 43.9C124.2 62 111.9 78.9 64 127.5zM37.6 13.4c-9.9 0-18.2 5.2-22.3 13.8C5 49.5 28.4 72 64 109.2c35.7-37.3 59-59.8 48.6-82 -4.1-8.7-12.4-13.8-22.3-13.8 -15.9 0-22.7 13-26.4 19.2C60.6 26.8 54.4 13.4 37.6 13.4z"/></svg></span>';
-} // get_unliked_icon()
+}
+
 /**
  * Utility function to format the button count,
  * appending "K" if one thousand or greater,
@@ -308,7 +318,8 @@ function sl_format_count( $number ) {
     }
     $formatted = str_replace( '.00', '', $formatted );
     return $formatted;
-} // sl_format_count()
+}
+
 /**
  * Utility retrieves count plus count options,
  * returns appropriate format based on options
@@ -322,12 +333,10 @@ function get_like_count( $like_count ) {
     } else {
         $number = $like_text;
     }
-    $count = '<span class="post-like__count">' . $number . '</span>';
-    return $count;
-} // get_like_count()
-// User Profile List
+  return '<span class="post-like__count">' . $number . '</span>';
+}
 add_action( 'show_user_profile', 'show_user_likes' );
-add_action( 'edit_user_profile', 'show_user_likes' );
+
 function show_user_likes( $user ) { ?>
     <table class="form-table">
         <tr>
@@ -365,28 +374,30 @@ function show_user_likes( $user ) { ?>
             </td>
         </tr>
     </table>
-<?php } // show_user_likes()
+<?php }
+add_action( 'edit_user_profile', 'show_user_likes' );
+
 // VIEWS
-function getPostViews($postID){
-    $count_key = 'post_views_count';
-    $count = get_post_meta($postID, $count_key, true);
-    if($count==''){
-        delete_post_meta($postID, $count_key);
-        add_post_meta($postID, $count_key, '0');
-        return 	"0 View";
-    }
-    return $count.' Views';
-}
-// function to count views.
-function setPostViews($postID) {
-    $count_key = 'post_views_count';
-    $count = get_post_meta($postID, $count_key, true);
-    if($count==''){
-        $count = 0;
-        delete_post_meta($postID, $count_key);
-        add_post_meta($postID, $count_key, '0');
-    }else{
-        $count++;
-        update_post_meta($postID, $count_key, $count);
-    }
-}
+//function getPostViews($postID){
+//    $count_key = 'post_views_count';
+//    $count = get_post_meta($postID, $count_key, true);
+//    if($count==''){
+//        delete_post_meta($postID, $count_key);
+//        add_post_meta($postID, $count_key, '0');
+//        return 	"0 View";
+//    }
+//    return $count.' Views';
+//}
+//// function to count views.
+//function setPostViews($postID) {
+//    $count_key = 'post_views_count';
+//    $count = get_post_meta($postID, $count_key, true);
+//    if($count==''){
+//        $count = 0;
+//        delete_post_meta($postID, $count_key);
+//        add_post_meta($postID, $count_key, '0');
+//    }else{
+//        $count++;
+//        update_post_meta($postID, $count_key, $count);
+//    }
+//}

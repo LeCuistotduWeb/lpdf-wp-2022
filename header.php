@@ -24,6 +24,7 @@
       <form action="">
         <input type="search" name="q" placeholder="Rechercher" id="navbarSearch" class="input-search">
       </form>
+      <div class="search-response"></div>
     </div>
   </div>
   <!--    <div>-->

@@ -23,13 +23,15 @@
   }
 
   .header__nav-items ul li {
-    padding-right: $spacing;
+    padding-right: 8px;
   }
 
   .header__nav-items a {
-    font-weight: 600;
-    color: $color-regular-black;
+    font-weight: bold;
+    color: $color-typography-default;
     text-decoration: none;
+    font-family: $font-serif;
+    letter-spacing: 1px;
   }
 
   .header__nav-items ul ul {

@@ -25,6 +25,7 @@
 .post-card__thumbnail {
   height: 190px;
   overflow: hidden;
+  position: relative;
 }
 
 .post-card__thumbnail img {
@@ -44,4 +45,33 @@
   font-size: 20px;
   line-height: 28px;
   color: $color-typography-default;
+}
+
+.post-card__info {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: $color-regular-white;
+  padding: 2px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: $color-typography-default;
+  box-shadow: 0 0 10px rgba(0,0,0,.3);
+
+  svg, svg path {
+    width: 14px;
+    fill: $color-typography-default;
+  }
+
+  .post-like__wrapper,
+  .post-card__info-comments {
+    display: flex;
+    align-items: center;
+  }
+
+  .post-card__info-likes {
+    margin-right: 8px;
+  }
 }

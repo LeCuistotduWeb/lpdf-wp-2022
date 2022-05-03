@@ -50,11 +50,11 @@
   }
 }
 
-.homepage__section-category {
-
+.homepage__section-title {
+  margin: 0 0 16px;
 }
 
-.homepage__section-title {
+.homepage__section-category-title {
   margin: 0;
   transform: translateY(-50%);
 }
@@ -70,4 +70,30 @@
 .section-category__link {
   text-align: right;
   margin-top: $spacing;
+}
+
+.homepage__section-brands {
+  margin-bottom: 50px;
+  padding-bottom: 32px;
+
+  .homepage__brands-list {
+    display: flex;
+    column-gap: 32px;
+    row-gap: $spacing;
+    flex-wrap: wrap;
+
+    h3 {
+      margin: 0;
+    }
+
+    @include media-min("sm") {
+      display: grid;
+      grid-gap: 32px;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    @include media-min("md") {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+  }
 }
