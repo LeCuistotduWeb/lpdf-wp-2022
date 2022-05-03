@@ -6,11 +6,11 @@ $bgColor = $args['data']['bgColor'];
 $type = $args['data']['type'];
 ?>
 
-<section class="homepage__section-category homepage__section-category-<?= $type ?>" style="background-color: <?= $bgColor ?>">
+<section class="section-category section-category__<?= $type ?>" style="background-color: <?= $bgColor ?>">
   <div class="container">
-    <h2 class="homepage__section-title homepage__section-category-title">Catégorie <em><?= $categoryName ?></em></h2>
+    <h2 class="section__title section-category__title">Catégorie <em><?= $categoryName ?></em></h2>
   </div>
-  <div class="homepage__posts-list container">
+  <div class="section-category__posts-list container">
     <?php
     $args = ['posts_per_page' => 3, 'category_name' => $categorySlug];
     $query = new WP_Query( $args );

@@ -1,0 +1,8 @@
+// Spacing
+// ==================
+
+@function spacing($i:1) {
+  @return calc(#{$i} * #{$spacing-default});
+}
+
+/* how to use */

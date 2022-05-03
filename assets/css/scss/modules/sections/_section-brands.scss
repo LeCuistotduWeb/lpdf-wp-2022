@@ -1,0 +1,21 @@
+.section-brands {
+  margin-bottom: spacing(7);
+  padding-bottom: spacing(4);
+}
+
+.section-brands__list {
+  display: flex;
+  column-gap: spacing(4);
+  row-gap: spacing(2);
+  flex-wrap: wrap;
+
+  @include media-min("sm") {
+    display: grid;
+    grid-gap: 32px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  @include media-min("md") {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}

@@ -11,15 +11,15 @@ $brands = get_posts([
   'order'             => 'DESC',
 ]);
 if( $brands ): ?>
-  <section class="homepage__section-brands">
+  <section class="section-brands">
     <div class="container">
-      <h2 class="homepage__section-title">Les dernières marques</h2>
+      <h2 class="section__title section-brands__title">Les dernières marques</h2>
     </div>
-    <div class="homepage__brands-list container">
+    <div class="section-brands__list container">
       <?php foreach( $brands as $brand ): ?>
         <?php $brandId = $brand->ID ?>
         <h3>
-          <a class="brand-link" href="<?= get_permalink($brandId) ?>"><?= get_the_title($brandId) ?></a>
+          <a class="section-brands__link" href="<?= get_permalink($brandId) ?>"><?= get_the_title($brandId) ?></a>
         </h3>
         <?php wp_reset_postdata(); ?>
       <?php endforeach; ?>

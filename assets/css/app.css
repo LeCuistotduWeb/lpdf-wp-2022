@@ -27,6 +27,9 @@ a:hover {
   align-items: center;
   justify-content: center; }
 
+.divider {
+  border-top: 1px solid rgba(0, 0, 0, 0.1); }
+
 /*--------------------------------------------------------------
 # Mixins
 --------------------------------------------------------------*/
@@ -37,6 +40,7 @@ a:hover {
 /*
  *How to use
  */
+/* how to use */
 /*--------------------------------------------------------------
 # Bases
 --------------------------------------------------------------*/
@@ -211,7 +215,7 @@ h2 {
 .footer {
   background: #EFEAE7; }
   .footer .footer__container {
-    padding: 32px 16px 0; }
+    padding: calc(3 * 8px) calc(2 * 8px); }
     @media screen and (min-width: 900px) {
       .footer .footer__container {
         display: grid;
@@ -229,7 +233,9 @@ h2 {
   .footer .footer__container ul li {
     padding: 10px 0; }
   .footer .footer-bottom {
-    padding-bottom: 16px; }
+    padding: calc(3 * 8px) calc(2 * 8px); }
+  .footer .footer-bottom p {
+    margin: 0; }
 
 .comments__list .comment {
   list-style: none; }
@@ -348,6 +354,50 @@ h2 {
 .post-like__button svg {
   fill: #232323; }
 
+.section__title {
+  margin: 0 0 calc(2 * 8px); }
+
+.section-category {
+  margin-bottom: calc(6 * 8px);
+  padding-bottom: calc(4 * 8px); }
+  @media screen and (min-width: 900px) {
+    .section-category {
+      margin-bottom: calc(12 * 8px); } }
+
+.section-category__title {
+  margin: 0;
+  transform: translateY(-50%); }
+
+.section-category__posts-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  overflow: auto;
+  grid-gap: calc(2 * 8px);
+  padding: calc(4 * 8px); }
+
+.section-category__link {
+  text-align: right;
+  margin-top: calc(2 * 8px); }
+
+.section-brands {
+  margin-bottom: calc(7 * 8px);
+  padding-bottom: calc(4 * 8px); }
+
+.section-brands__list {
+  display: flex;
+  column-gap: calc(4 * 8px);
+  row-gap: calc(2 * 8px);
+  flex-wrap: wrap; }
+  @media screen and (min-width: 768px) {
+    .section-brands__list {
+      display: grid;
+      grid-gap: 32px;
+      grid-template-columns: 1fr 1fr 1fr 1fr; } }
+  @media screen and (min-width: 900px) {
+    .section-brands__list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr; } }
+
 /*--------------------------------------------------------------
 # layout
 --------------------------------------------------------------*/
@@ -439,10 +489,10 @@ h2 {
   object-fit: cover; }
 .homepage__hero .hero__content {
   background-color: #fff;
-  padding: 32px 0 16px; }
+  padding: calc(4 * 8px) 0 calc(2 * 8px); }
   @media screen and (min-width: 900px) {
     .homepage__hero .hero__content {
-      padding: 32px;
+      padding: calc(4 * 8px);
       border-radius: 15px;
       transform: translateY(-90px);
       max-width: 80%; } }
@@ -455,51 +505,6 @@ h2 {
     .homepage__hero .hero__content h1 {
       font-size: 45px;
       line-height: 56px; } }
-
-.homepage__section-category {
-  margin-bottom: 50px;
-  padding-bottom: 32px; }
-  @media screen and (min-width: 900px) {
-    .homepage__section-category {
-      margin-bottom: 100px; } }
-
-.homepage__section-title {
-  margin: 0 0 16px; }
-
-.homepage__section-category-title {
-  margin: 0;
-  transform: translateY(-50%); }
-
-.homepage__posts-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  overflow: auto;
-  grid-gap: 1rem;
-  padding: 16px; }
-
-.section-category__link {
-  text-align: right;
-  margin-top: 16px; }
-
-.homepage__section-brands {
-  margin-bottom: 50px;
-  padding-bottom: 32px; }
-  .homepage__section-brands .homepage__brands-list {
-    display: flex;
-    column-gap: 32px;
-    row-gap: 16px;
-    flex-wrap: wrap; }
-    .homepage__section-brands .homepage__brands-list h3 {
-      margin: 0; }
-    @media screen and (min-width: 768px) {
-      .homepage__section-brands .homepage__brands-list {
-        display: grid;
-        grid-gap: 32px;
-        grid-template-columns: 1fr 1fr 1fr 1fr; } }
-    @media screen and (min-width: 900px) {
-      .homepage__section-brands .homepage__brands-list {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr; } }
 
 /*--------------------------------------------------------------
 # Pages

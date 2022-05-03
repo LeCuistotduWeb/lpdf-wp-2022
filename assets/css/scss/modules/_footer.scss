@@ -2,7 +2,7 @@
   background: #EFEAE7;
 
   .footer__container {
-    padding: 32px $spacing 0;
+    padding: spacing(3) spacing(2);
 
     @include media-min("md") {
       display: grid;
@@ -29,6 +29,10 @@
   }
 
   .footer-bottom {
-    padding-bottom: 16px;
+    padding: spacing(3) spacing(2);
+  }
+
+  .footer-bottom p {
+    margin: 0;
   }
 }

@@ -19,6 +19,10 @@
     <?php endif;?>
   </div>
 
+  <div class="container">
+    <hr class="divider">
+  </div>
+
   <div class="footer-bottom container">
     <p>Tous droits réservés <strong>Lepoudrierdefleur</strong> ♡ site réalisé par <a href="https://lecuistotduweb.fr" target="_blank" rel="noreferrer">Lecuistotduweb</a></p>
   </div>

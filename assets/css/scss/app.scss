@@ -10,6 +10,7 @@
 # Mixins
 --------------------------------------------------------------*/
 @import "mixins/breakpoints";
+@import "mixins/spacing";
 
 /*--------------------------------------------------------------
 # Bases
@@ -32,6 +33,10 @@
 @import "modules/comments";
 @import "modules/post-card";
 @import "modules/post-likes";
+@import "modules/sections/section";
+@import "modules/sections/section-category";
+@import "modules/sections/section-brands";
+
 
 /*--------------------------------------------------------------
 # layout

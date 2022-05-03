@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <main role="main">
-  <header class="category-page__header">
+  <header class="category-page__header" style="background-color: #FFDCD9">
     <div class="container">
       <h1 class="category-page__header-title">
         <span>catégories</span>

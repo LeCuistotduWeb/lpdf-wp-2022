@@ -17,13 +17,12 @@
   }
   .hero__content {
     background-color: #fff;
-    padding: 32px 0 16px;
+    padding: spacing(4) 0 spacing(2);
 
     @include media-min("md") {
-      padding: 32px;
+      padding: spacing(4);
       border-radius: 15px;
       transform: translateY(-90px);
-      //margin-bottom: -90px;
       max-width: 80%;
     }
   }
@@ -37,63 +36,6 @@
     @include media-min("md") {
       font-size: 45px;
       line-height: 56px;
-    }
-  }
-}
-
-.homepage__section-category {
-  margin-bottom: 50px;
-  padding-bottom: 32px;
-
-  @include media-min("md") {
-    margin-bottom: 100px;
-  }
-}
-
-.homepage__section-title {
-  margin: 0 0 16px;
-}
-
-.homepage__section-category-title {
-  margin: 0;
-  transform: translateY(-50%);
-}
-
-.homepage__posts-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  overflow: auto;
-  grid-gap: 1rem;
-  padding: 16px;
-}
-
-.section-category__link {
-  text-align: right;
-  margin-top: $spacing;
-}
-
-.homepage__section-brands {
-  margin-bottom: 50px;
-  padding-bottom: 32px;
-
-  .homepage__brands-list {
-    display: flex;
-    column-gap: 32px;
-    row-gap: $spacing;
-    flex-wrap: wrap;
-
-    h3 {
-      margin: 0;
-    }
-
-    @include media-min("sm") {
-      display: grid;
-      grid-gap: 32px;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-    @include media-min("md") {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     }
   }
 }
