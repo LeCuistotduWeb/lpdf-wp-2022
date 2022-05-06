@@ -2,9 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: $spacing;
+  padding: spacing(1) spacing(2);
   position: relative;
   background-color: $color-regular-white;
+  @include media-min("md") {
+    padding: spacing(2);
+  }
 }
 
 .header__nav-items {
@@ -71,11 +74,11 @@
 }
 
 .header__menu {
-  transition: all .3s;
+  transition: transform .3s;
   @include media-max("md") {
     position: absolute;
     bottom: 0;
-    top: 80px;
+    top: 56px;
     left: 0;
     right: 0;
     height: 100vh;
@@ -95,11 +98,16 @@
   flex-direction: column;
   background: $color-regular-white;
   transform: translateX(0%);
-  transition: all .3s;
   @include media-min("lg") {
     position: initial;
     display: flex;
     flex-direction: row;
     background-color: inherit;
+  }
+}
+
+.header__brand svg {
+  @include media-max("lg") {
+    width: 150px;
   }
 }

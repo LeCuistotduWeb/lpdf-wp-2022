@@ -8,6 +8,7 @@ $color-regular-white: #fff;
 $color-regular-black: #000;
 
 $color-typography-default: #414141;
+$color-grey-divider: $color-grey-light;
 
 $spacing-default: 8px;
 $spacing: 16px;
@@ -17,6 +18,7 @@ $card-border-radius: 10px;
 $font-serif: 'Playfair Display', serif;
 $font-sans-serif: 'Open Sans', sans-serif;
 
+$border-default: solid $color-grey-divider 2px;
 $border-radius: 10px;
 $border-radius-sm: 5px;
 $border-radius-xs: 2px;

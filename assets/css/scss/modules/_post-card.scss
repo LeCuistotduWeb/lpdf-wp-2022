@@ -75,3 +75,40 @@
     margin-right: 8px;
   }
 }
+
+.post-card__categories a {
+  text-decoration: none;
+}
+
+/* Post card large */
+.post-card-large {
+  border: $border-default;
+  width: 100%;
+}
+.post-card-large .post-card__container {
+  @include media-min("md") {
+    display: flex;
+  }
+}
+
+.post-card-large .post-card__thumbnail {
+  height: 230px;
+  @include media-min("md") {
+    height: 100%;
+    width: 350px;
+  }
+}
+
+.post-card-large .post-card__thumbnail img {
+  height: auto;
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  @include media-min("md") {
+    height: 100%;
+  }
+}
+
+.post-card-large .post-card__content {
+  padding: spacing(4);
+}
