@@ -7,8 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "sass assets/css/scss/app.scss assets/css/app.css",
-    "watch": "sass --watch assets/css/scss/app.scss:assets/css/app.css"
+    "build": "sass assets/css/scss/app.scss assets/css/app.css --style compressed --scss",
+    "watch": "sass --watch assets/css/scss/app.scss:assets/css/app.css --style compressed --scss"
   },
   "repository": {
     "type": "git",

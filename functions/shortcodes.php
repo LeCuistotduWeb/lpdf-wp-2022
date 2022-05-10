@@ -41,3 +41,18 @@ function shortcodeBrandsSection( $atts )
   return $html;
 }
 add_shortcode( 'brands-section', 'shortcodeBrandsSection' );
+
+function shortcodeBrandsList( $atts )
+{
+  ob_start();
+  get_template_part( 'parts/brands-list', '', [
+    'data' => [
+      'limit' => $atts['limit'] ?? null,
+    ],
+  ]);
+  $html = ob_get_contents();
+  ob_end_clean();
+
+  return $html;
+}
+add_shortcode( 'brands_list', 'shortcodeBrandsList' );

@@ -75,10 +75,11 @@
 
 .header__menu {
   transition: transform .3s;
+  z-index: 100;
   @include media-max("md") {
     position: absolute;
     bottom: 0;
-    top: 56px;
+    top: 48px;
     left: 0;
     right: 0;
     height: 100vh;

@@ -126,7 +126,6 @@ function customPagination()
 </svg>'
   ]) . '</div>';
 }
-add_action('init', 'customPagination');
 
 /**
  * Transient functions

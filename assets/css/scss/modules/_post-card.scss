@@ -104,11 +104,15 @@
   width: 100%;
   display: block;
   object-fit: cover;
+  object-position: center center;
   @include media-min("md") {
     height: 100%;
   }
 }
 
 .post-card-large .post-card__content {
-  padding: spacing(4);
+  padding: spacing(2);
+  @include media-min("md") {
+    padding: spacing(4);
+  }
 }
