@@ -35,10 +35,9 @@
                                 </div>
                             </div>
                             <div class="post-card__content">
-                                <div class="post-card__categories"><?php the_category(', ') ?></div>
                                 <h3 class="post-card__title"><?php the_title(); ?></h3>
                                 <p class="post-card__excerpt"><?php the_excerpt(); ?></p>
-                                <a class="post-card__link" href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>">Lire l'article</a>
+                                <div class="post-card__link text-link">Lire l'article</div>
                             </div>
                         </div>
                     </a>

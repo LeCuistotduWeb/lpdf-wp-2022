@@ -14,12 +14,14 @@ body {
   box-sizing: border-box;
 }
 
-a {
+a,
+.text-link {
   color: $color-vieux-rose;
   //text-decoration: none;
 }
 
-a:hover {
+a:hover,
+.text-link {
   text-decoration: underline;
 }
 
