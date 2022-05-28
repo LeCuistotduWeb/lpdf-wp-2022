@@ -35,7 +35,7 @@ function getBrandPosts($brandId){
     $posts = get_posts(array(
       'post_type' => 'post',
       'post_status' => 'publish',
-      'numberposts' => '4',
+//      'numberposts' => '4',
       'meta_query' => array(
         array(
           'key' => 'post_brands',

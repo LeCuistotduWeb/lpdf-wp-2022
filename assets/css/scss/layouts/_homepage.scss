@@ -1,4 +1,5 @@
 .homepage__hero {
+  margin-bottom: spacing(4);
   .hero__thumbnail {
     width: 100%;
     max-height: 250px;
@@ -18,13 +19,6 @@
   .hero__content {
     background-color: #fff;
     padding: spacing(4) 0 spacing(2);
-
-    @include media-min("md") {
-      padding: spacing(4);
-      border-radius: 15px;
-      transform: translateY(-90px);
-      max-width: 80%;
-    }
   }
 
   .hero__content h1{
@@ -37,5 +31,15 @@
       font-size: 45px;
       line-height: 56px;
     }
+  }
+
+  @include media-min("md") {
+    margin-bottom: spacing(6);
+    .hero__content {
+      padding: spacing(4);
+      border-radius: 15px;
+      transform: translateY(-90px);
+      margin-bottom: -90px;
+      max-width: 80%;}
   }
 }

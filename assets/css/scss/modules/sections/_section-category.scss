@@ -24,6 +24,13 @@
   }
 }
 
+.section-category__posts-list .post-card{
+  width: 80vw;
+  @include media-min("md") {
+    width: auto;
+  }
+}
+
 .section-category__link {
   text-align: right;
   margin-top: spacing(2);

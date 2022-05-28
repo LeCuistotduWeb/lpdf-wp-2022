@@ -2,7 +2,7 @@
 .post-card {
   background-color: $color-regular-white;
   border-radius: $card-border-radius;
-  width: 80vw;
+  width: 100%;
   overflow: hidden;
   transition: transform .3s;
   height: 100%;
@@ -10,9 +10,9 @@
   &:hover img{
     transform: scale(1.02);
   }
-
-  @include media-min("md") {
-    width: auto;
+  &.card-border {
+    border: solid 2px $color-grey-divider;
+    border-top: none;
   }
 }
 .post-card__link {
