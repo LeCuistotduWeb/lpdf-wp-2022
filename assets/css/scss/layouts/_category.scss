@@ -60,3 +60,24 @@
   margin: spacing(4) 0;
 }
 
+// search page
+.category-search-header {
+  margin: 0;
+  padding: spacing(3) spacing(2);
+  @include media-min('md') {
+    padding: spacing(6) spacing(2);
+  }
+}
+.category-search-header .category-header__title {
+  margin: 0;
+}
+
+.category-search-header .category-header__overline {
+  margin: 0;
+  line-height: 60px;
+  @include media-min('sm') {
+    line-height: 90px;
+  }
+}
+
+

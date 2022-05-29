@@ -18,7 +18,7 @@ if( $brands ): ?>
     <div class="section-brands__list container">
       <?php foreach( $brands as $brand ): ?>
         <?php $brandId = $brand->ID ?>
-        <h3>
+        <h3 class="section-brands__brand">
           <a class="section-brands__link" href="<?= get_permalink($brandId) ?>"><?= get_the_title($brandId) ?></a>
         </h3>
         <?php wp_reset_postdata(); ?>

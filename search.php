@@ -12,17 +12,13 @@ $total_results = $wp_query->found_posts;
 ?>
 
 <main role="main">
-  <header class="category-header" style="background-color: #FFDCD9">
+  <header class="category-header category-search-header" style="background-color: #FFDCD9">
     <div class="container">
       <h1 class="category-header__title">
         <div class="category-header__overline">Recherche</div>
       </h1>
-
-      <div>
-        <?= $total_results ?> éléments trouvés
-      </div>
-      <div>
-        <?php get_search_form(); ?>
+      <div class="category-header__subtitle">
+        <?= $total_results ?> <?= $total_results > 1 ? 'résultats' : 'résultat' ?> pour <strong><?= get_search_query(); ?></strong>
       </div>
     </div>
   </header>

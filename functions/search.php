@@ -8,7 +8,8 @@
  */
 if (isset($_REQUEST['action']) && ($_REQUEST['action'] === 'search')) {
   add_action('init', static function () {
-    $value = $_POST['value'];
+    $value = $_POST['body']['data'] ?? '';
+    wp_send_json($value, 200);
     if($value){
       $data = null;
       $html = null;
@@ -29,7 +30,7 @@ if (isset($_REQUEST['action']) && ($_REQUEST['action'] === 'search')) {
             "thumbnail" => get_the_post_thumbnail(null, 'thumbnail'),
             "type"          => get_post_type(),
           ];
-          $html = base_get_template_part('search','search-result', $data);
+          $html = get_template_part( 'parts/search-result', '', ['data' => $data,]);
         endwhile;
         wp_reset_postdata();
       endif;
