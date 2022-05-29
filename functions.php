@@ -2,7 +2,7 @@
 function monthemeRegisterAssets()
 {
   wp_enqueue_style( 'lpdf-styles', get_template_directory_uri() . '/assets/css/app.css', [], 1);
-  wp_enqueue_script('lpdf-scripts', get_template_directory_uri(). '/assets/js/app.min.js', [], null, true);
+  wp_enqueue_script('lpdf-scripts', get_template_directory_uri(). '/assets/js/app.js', [], null, true);
 }
 add_action('wp_enqueue_scripts', 'monthemeRegisterAssets');
 

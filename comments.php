@@ -107,6 +107,7 @@ Comments template file
           '<textarea id="comment" placeholder="'. esc_attr__('Comment', 'lpdf') .'*" name="comment" cols="45" rows="8" aria-required="true" class="form-control"></textarea>' .
           '</div>',
         'label_submit' => esc_html__('Post Comment', 'lpdf'),
+        'class_submit' => 'btn btn-primary btn-submit',
         'fields' => apply_filters('comment_form_default_fields', $fields)
       );
       comment_form($args);
@@ -116,6 +117,7 @@ Comments template file
         'comment_field' => '<div class="form-group ">' .
           '<textarea id="comment" placeholder="'. esc_attr__('Comment', 'lpdf') .'*" name="comment" cols="45" rows="8" aria-required="true" class="form-control"></textarea>' .
           '</div>',
+        'class_submit' => 'btn btn-primary btn-submit',
         'label_submit' => esc_html__('Post Comment', 'lpdf'),
         'fields' => apply_filters('comment_form_default_fields', $fields)
       );

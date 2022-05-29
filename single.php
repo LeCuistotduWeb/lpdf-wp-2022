@@ -61,15 +61,17 @@
       <?php $prevPost = get_previous_post(true);?>
       <?php $nextPost = get_next_post(true);?>
       <?php if(true == get_theme_mod('post_nav', true)) : ?>
-        <div id="post-nav" class="row">
-          <?php if (get_previous_post_link()) : ?>
-            <div class="post-previous col-md-6 no-padding">
-              <h4><?php previous_post_link(); ?></h4>
-            </div>
-          <?php endif; ?>
+        <div id="post-nav" class="post-nav">
           <?php if (get_next_post_link()) : ?>
             <div class="post-next col-md-6 no-padding">
+              <strong>Article suivant</strong>
               <h4><?php next_post_link(); ?></h4>
+            </div>
+          <?php endif; ?>
+          <?php if (get_previous_post_link()) : ?>
+            <div class="post-previous col-md-6 no-padding">
+              <strong>Article précédent</strong>
+              <h4><?php previous_post_link(); ?></h4>
             </div>
           <?php endif; ?>
         </div>

@@ -15,10 +15,25 @@
 %rounded-corners {
   border-radius: 4px;
 }
+
 %large {
   width: 100%;
   text-align: center;
   @include media-min("md") {
+    width: auto;
+  }
+}
+
+%primary {
+  background-color: $color-vieux-rose;
+  color: $color-regular-white;
+  &:hover {
+  background-color: $color-vieux-rose-hover;
+  }
+}
+
+%submit {
+  @include media-min('sm'){
     width: auto;
   }
 }
@@ -50,5 +65,13 @@
 
   &.btn-large{
     @extend %large;
+  }
+
+  &.btn-primary{
+    @extend %primary;
+  }
+
+  &.btn-submit{
+    @extend %submit;
   }
 }

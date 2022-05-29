@@ -85,6 +85,25 @@
   }
 }
 
+.post__navigation  {
+  .post-nav {
+    margin: spacing(4) 0;
+    border-top: solid 2px $color-grey-divider;
+    border-bottom: solid 2px $color-grey-divider;
+    h4 {
+      margin: 0;
+    }
+    .post-previous,
+    .post-next {
+      margin: spacing(3) 0;
+    }
+    @include media-min("md") {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
 .post__content-footer {
   @include media-min("md") {
     display: flex;

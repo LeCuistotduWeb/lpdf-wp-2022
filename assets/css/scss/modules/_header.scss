@@ -6,19 +6,13 @@
     padding: spacing(2) spacing(4);
   }
 }
-.header-menu-desktop {
-  display:none;
-  @include media-min('md') {
-    display: block;
-    visibility: visible;
-  }
-}
 .header__nav-items {
   @include media-max("md") {
     order: 1;
   }
 }
-.header__nav-items ul {
+.header__nav-items .menu,
+.header__nav-items .sub-menu {
   padding: 0;
   margin: 0;
   list-style: none;
@@ -26,39 +20,38 @@
     display: flex;
   }
 }
-.header__nav-items ul li {
+.header-container-desktop .sub-menu {
+  width: 100%;
+  left: 0;
+  padding: spacing(3) spacing(2);
+}
+.header__nav-items .menu .menu-item {
   padding-right: spacing(3);
 }
-.header__nav-items a {
+.header__nav-items .menu-item a {
   color: $color-typography-default;
   text-decoration: none;
   font-family: $font-serif;
   letter-spacing: 1px;
+  &:hover {
+    font-weight: bold;
+  }
 }
-.header__nav-items ul ul {
+.header__nav-items .menu .sub-menu {
   display: none;
 }
-.header__nav-items li:hover ul {
+
+.header__nav-items .menu-item:hover .sub-menu {
   display: block;
   position: absolute;
   background-color: $color-regular-white;
   z-index: 100;
-  padding: 0 $spacing;
+}
+.header__nav-items .menu .sub-menu .menu-item {
+  padding: spacing(2);
 }
 .header__search input{
-  background: $color-grey-light;
-  border-radius: 5px;
-  border: none;
-  padding: 10px;
-  width: 100%;
   min-width: 400px;
-  &:focus-visible {
-    outline-color: $color-grey-medium;
-    background-color: $color-regular-white;
-  }
-  &::placeholder {
-    color: black;
-  }
 }
 .header__menu-icon {
   @include media-min("md") {

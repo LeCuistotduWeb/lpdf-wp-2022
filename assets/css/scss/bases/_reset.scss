@@ -17,12 +17,13 @@ body {
 a,
 .text-link {
   color: $color-vieux-rose;
-  //text-decoration: none;
+  transition: color .3s;
 }
 
 a:hover,
 .text-link {
   text-decoration: underline;
+  color: $color-vieux-rose-hover;
 }
 
 img {
