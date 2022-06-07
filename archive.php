@@ -1,10 +1,13 @@
-<?php get_header(); ?>
-
+<?php get_header();
+$term = get_queried_object();
+$headerBackgroundColor = get_field('category_background_color',$term);
+$headerTextColor = get_field('category_text_color',$term);
+?>
 <main role="main">
-    <header class="category-header" style="background-color: #FFDCD9">
+    <header class="category-header" style="background-color: <?= $headerBackgroundColor ?? '#FFDCD9' ?>">
         <div class="container">
             <h1 class="category-header__title">
-                <div class="category-header__overline">Catégories</div>
+                <div class="category-header__overline" style="color: <?= $headerTextColor ?? '#C47F79' ?>">Catégories</div>
                 <div class="category-header__name"><?php single_cat_title() ?></div>
             </h1>
         </div>
