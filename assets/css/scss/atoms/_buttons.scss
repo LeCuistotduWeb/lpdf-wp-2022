@@ -2,7 +2,7 @@
   display: inline-block;
   border: none;
   background-color: $color-creme;
-  padding: 1rem;
+  padding: spacing(2) spacing(4);
   transition: background-color .3s;
   text-decoration: none;
   color: $color-regular-black;
@@ -10,6 +10,11 @@
   &:focus,
   &:active {
     background-color: $color-vieux-rose;
+    color: $color-regular-black;
+    text-decoration: none;
+  }
+  &:disabled {
+    background-color: #aeaeae;
   }
 }
 %rounded-corners {
@@ -25,14 +30,15 @@
 }
 
 %primary {
-  background-color: $color-vieux-rose;
-  color: $color-regular-white;
+  background-color: $color-creme;
+  color: $color-regular-black;
   &:hover {
   background-color: $color-vieux-rose-hover;
   }
 }
 
 %submit {
+  cursor: pointer;
   @include media-min('sm'){
     width: auto;
   }

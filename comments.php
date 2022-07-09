@@ -55,7 +55,7 @@ Comments template file
                 <?php comment_text() ?>
               </div>
 
-              <!-- Replay -->
+              <!-- Reply -->
               <div class="comment__reply">
                 <?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => 1000))) ?>
               </div>
@@ -92,11 +92,8 @@ Comments template file
     $fields = array(
       'author' => '<div class="form-group log-form-group">' .
         '<div class="col-md-4 "><input id="author" placeholder="'. esc_attr__('Name', 'lpdf') .'*" name="author" type="text" value="' . esc_attr($commenter['comment_author']) . '" size="30" class="form-control" /></div>' ,
-
       'email' => '<div class="col-md-4 "><input id="email" placeholder="'. esc_attr__('Email', 'lpdf') .'*" name="email"  type="text" value="' . esc_attr($commenter['comment_author_email']) . '" size="30" class="form-control" /></div>' ,
-
       'url' =>  '<div class="col-md-4 "><input id="url" placeholder="'. esc_attr__('Website', 'lpdf') .'" name="url"  type="text" value="' . esc_attr($commenter['comment_author_url']) . '" size="30" class="form-control" /></div>' .
-
         '</div>'
     );
 
@@ -108,19 +105,21 @@ Comments template file
           '</div>',
         'label_submit' => esc_html__('Post Comment', 'lpdf'),
         'class_submit' => 'btn btn-primary btn-submit',
-        'fields' => apply_filters('comment_form_default_fields', $fields)
+        'fields' => apply_filters('comment_form_default_fields', $fields),
+        'class_container'=> 'comment-form__container',
       );
       comment_form($args);
     } else {
-      $args = array(
+      $args = [
         'comment_notes_after' => '',
         'comment_field' => '<div class="form-group ">' .
           '<textarea id="comment" placeholder="'. esc_attr__('Comment', 'lpdf') .'*" name="comment" cols="45" rows="8" aria-required="true" class="form-control"></textarea>' .
           '</div>',
         'class_submit' => 'btn btn-primary btn-submit',
         'label_submit' => esc_html__('Post Comment', 'lpdf'),
-        'fields' => apply_filters('comment_form_default_fields', $fields)
-      );
+        'fields' => apply_filters('comment_form_default_fields', $fields),
+        'class_container'=> 'comment-form__container',
+      ];
       comment_form($args);
     } ?>
   <?php } ?>

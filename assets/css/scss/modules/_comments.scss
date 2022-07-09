@@ -77,3 +77,10 @@
   }
 }
 
+.log-form-group {
+  @include media-min("md") {
+    display: flex;
+    gap: spacing(2);
+  }
+}
+

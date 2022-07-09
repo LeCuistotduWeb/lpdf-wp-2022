@@ -3,7 +3,7 @@
 global $post;
 
 function sl_enqueue_scripts() {
-    wp_enqueue_script( 'simple-likes-public-js', get_template_directory_uri() . '../assets/js/likes-public.js', array( 'jquery' ), '0.5', false );
+    wp_enqueue_script( 'simple-likes-public-js', get_template_directory_uri() . '../assets/js/likes-public.js', [], '1', true );
     wp_localize_script( 'simple-likes-public-js', 'simpleLikes', array(
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
         'like' => __( 'Like', 'sharlene' ),

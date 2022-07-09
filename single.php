@@ -49,7 +49,8 @@
         </svg>
         <div>
           <div class="post-like__button">
-            <?= get_simple_likes_button(get_the_ID(), NULL, false, false, false, 'btn btn-rounded-corners btn-large') ?>
+            <strong style="margin-right: 8px">Tu aimes cet article ?</strong>
+            <?= get_simple_likes_button(get_the_ID(), NULL, false, false, true, 'btn btn-rounded-corners btn-large') ?>
           </div>
         </div>
       </div>
